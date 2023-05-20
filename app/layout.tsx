@@ -1,5 +1,7 @@
-import { Navbar } from "@/components/ui";
+import { Modal, Navbar } from "@/components/ui";
 import "./globals.css";
+import RegisterModal from "@/components/ui/Modal/RegisterModal";
+import { Toaster } from "react-hot-toast";
 
 export const metadata = {
   title: "Airbnb Clone",
@@ -14,6 +16,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Toaster />
+        <RegisterModal />
         <Navbar />
         {children}
       </body>
