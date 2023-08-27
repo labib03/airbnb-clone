@@ -65,10 +65,10 @@ const Modal: React.FC<Props> = ({
         showModal ? "opacity-100" : "opacity-0"
       }`}
     >
-      <div className="relative w-full md:w-4/6 lg:w-3/6 xl:w-2/5 my-6 mx-auto h-full lg:h-screen md:h-auto">
+      <div className="absolute top-0 w-full md:w-4/6 lg:w-3/6 xl:w-2/5 py-10 px-2 mx-auto h-auto">
         {/* content */}
         <div
-          className={`translate duration-300 h-full ${
+          className={`translate duration-300 h-auto ${
             showModal ? "translate-y-0" : "translate-y-full"
           } ${showModal ? "opacity-100" : "opacity-0"}`}
         >

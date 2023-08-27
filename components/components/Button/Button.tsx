@@ -33,8 +33,10 @@ const Button: React.FC<Props> = ({
           : "py-3 text-md font-semibold border-2"
       }`}
     >
-      {Icon && <Icon size={24} className="absolute left-4 top-3" />}
-      {label}
+      <span className="flex gap-2 items-center justify-center">
+        <span>{Icon && <Icon size={24} className="" />}</span>
+        <span className="text-sm md:text-base">{label}</span>
+      </span>
     </button>
   );
 };
