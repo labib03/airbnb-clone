@@ -1,7 +1,13 @@
 import { Container, Search, UserMenu } from "@/components/components";
 import Logo from "./Logo";
+import { User } from "@prisma/client";
+import React from "react";
 
-const Navbar = () => {
+interface INavbarProps {
+  currentUser: User | null;
+}
+
+const Navbar: React.FC<INavbarProps> = (props) => {
   return (
     <div className="fixed w-full bg-white z-10 shadow-sm">
       <div className="py-4 border-b-[1px]">
@@ -9,7 +15,7 @@ const Navbar = () => {
           <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
             <Logo />
             <Search />
-            <UserMenu />
+            <UserMenu currentUser={props.currentUser} />
           </div>
         </Container>
       </div>
