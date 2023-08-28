@@ -6,11 +6,11 @@ import React, { useCallback, useState } from "react";
 import MenuItem from "./MenuItem";
 import useRegisterModal from "@src/helpers/hooks/useRegisterModal";
 import useLoginModal from "@src/helpers/hooks/useLoginModal";
-import { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
+import { CurrentUserType } from "@src/types/user";
 
 interface IUserMenuProps {
-  currentUser: User | null;
+  currentUser: CurrentUserType | null;
 }
 
 const UserMenu: React.FC<IUserMenuProps> = (props) => {
@@ -60,12 +60,14 @@ const UserMenu: React.FC<IUserMenuProps> = (props) => {
                 <MenuItem
                   onClick={() => {
                     loginModal.onOpen();
+                    setIsOpen(false);
                   }}
                   label="Login"
                 />
                 <MenuItem
                   onClick={() => {
                     registerModal.onOpen();
+                    setIsOpen(false);
                   }}
                   label="Sign Up"
                 />
