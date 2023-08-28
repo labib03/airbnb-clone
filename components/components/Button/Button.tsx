@@ -35,7 +35,7 @@ const Button: React.FC<Props> = ({
     >
       <span className="flex gap-2 items-center justify-center">
         <span>{Icon && <Icon size={24} className="" />}</span>
-        <span className="text-sm md:text-base">{label}</span>
+        <span className="text-sm xl:text-base">{label}</span>
       </span>
     </button>
   );

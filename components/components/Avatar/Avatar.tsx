@@ -1,9 +1,13 @@
 import Image from "next/image";
 
-const Avatar = () => {
+type PropsType = {
+  imageSrc: string | undefined | null;
+};
+
+const Avatar = (props: PropsType) => {
   return (
     <Image
-      src="/images/placeholder.jpg"
+      src={props.imageSrc || "/images/placeholder.jpg"}
       alt="avatar"
       height={30}
       width={30}
