@@ -45,10 +45,10 @@ const CategoryBox: React.FC<CategoryBoxType> = (props) => {
     <div
       className={cn(
         "flex flex-col items-center justify-center gap-2 p-3 border-b-2 transition cursor-pointer",
-        "hover:text-neutral-800",
+        "hover:text-gray-800",
         props.selected
-          ? "border-b-neutral-800 text-neutral-800"
-          : "border-transparent text-neutral-500"
+          ? "border-b-gray-800 text-gray-900"
+          : "border-transparent text-gray-600"
       )}
       onClick={handleClick}
     >

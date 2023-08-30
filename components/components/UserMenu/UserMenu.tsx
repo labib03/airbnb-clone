@@ -2,12 +2,13 @@
 
 import { AiOutlineMenu } from "react-icons/ai";
 import Avatar from "../Avatar/Avatar";
-import React, { useCallback, useState } from "react";
-import MenuItem from "./MenuItem";
+import React from "react";
 import useRegisterModal from "@src/helpers/hooks/useRegisterModal";
 import useLoginModal from "@src/helpers/hooks/useLoginModal";
-import { signOut } from "next-auth/react";
 import { CurrentUserType } from "@src/types/user";
+import { Menu, MenuHandler } from "@material-tailwind/react";
+import MenuAuthenticated from "./MenuAuthenticated";
+import GeneralMenu from "./GeneralMenu";
 
 interface IUserMenuProps {
   currentUser: CurrentUserType | null;
@@ -16,11 +17,6 @@ interface IUserMenuProps {
 const UserMenu: React.FC<IUserMenuProps> = (props) => {
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleOpen = useCallback(() => {
-    setIsOpen((value) => !value);
-  }, []);
 
   return (
     <div className="relative">
@@ -31,51 +27,25 @@ const UserMenu: React.FC<IUserMenuProps> = (props) => {
         >
           Airbnb your home
         </div>
-        <div
-          onClick={toggleOpen}
-          className="p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition"
-        >
-          <AiOutlineMenu />
-          <div className="hidden md:block">
-            <Avatar imageSrc={props.currentUser?.image} />
-          </div>
-        </div>
+        <Menu placement="bottom-end">
+          <MenuHandler>
+            <div className="p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition">
+              <AiOutlineMenu />
+              <div className="hidden md:block">
+                <Avatar imageSrc={props.currentUser?.image} />
+              </div>
+            </div>
+          </MenuHandler>
+          {props.currentUser ? (
+            <MenuAuthenticated />
+          ) : (
+            <GeneralMenu
+              loginModal={loginModal}
+              registerModal={registerModal}
+            />
+          )}
+        </Menu>
       </div>
-
-      {isOpen && (
-        <div className="absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm ">
-          <div className="flex flex-col cursor-pointer">
-            {props.currentUser ? (
-              <>
-                <MenuItem
-                  onClick={() => {
-                    signOut();
-                  }}
-                  label="Log Out"
-                />
-              </>
-            ) : (
-              <>
-                {" "}
-                <MenuItem
-                  onClick={() => {
-                    loginModal.onOpen();
-                    setIsOpen(false);
-                  }}
-                  label="Login"
-                />
-                <MenuItem
-                  onClick={() => {
-                    registerModal.onOpen();
-                    setIsOpen(false);
-                  }}
-                  label="Sign Up"
-                />
-              </>
-            )}
-          </div>
-        </div>
-      )}
     </div>
   );
 };

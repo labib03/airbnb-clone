@@ -1,3 +1,4 @@
+export { default as RootWrapper } from "./Container/RootLayout";
 export { default as Container } from "./Container/Container";
 export { default as Search } from "./Search/Search";
 export { default as UserMenu } from "./UserMenu/UserMenu";
